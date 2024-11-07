@@ -6,9 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'package:practice/home_page.dart';
 import 'package:practice/increment_bloc.dart';
 import 'package:practice/increment_provider.dart';
+import 'package:practice/location_page.dart';
+import 'package:practice/sms_page.dart';
 import 'package:provider/provider.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,45 +45,9 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           primaryColor: Colors.grey.shade200,
         ),
-        home: const MyHomePage(),
+        home: const HomePage(),
       ),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Practice"),
-      ),
-      body: Center(
-        child: Text(
-          '${context.watch<IncrementProvider>().lat} === ${context.watch<IncrementProvider>().lon}\n${context.watch<IncrementProvider>().address}',
-          style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: 25),
-        ),
-      ),
-      // Center(
-      //   child: Text(
-      //     context.watch<IncrementProvider>().number.toString(),
-      //     style: const TextStyle(
-      //         fontWeight: FontWeight.bold, color: Colors.white, fontSize: 25),
-      //   ),
-      // ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.read<IncrementProvider>().getLocation();
-          // context.read<IncrementProvider>().incrementNumber();
-        },
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
