@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:practice/increment_provider.dart';
+import 'package:practice/state_manage/increment_provider.dart';
 
 class LocationPage extends StatelessWidget {
   const LocationPage({super.key});

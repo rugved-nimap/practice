@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice/sms_page.dart';
+import 'package:practice/pages/sms_page.dart';
 
 import 'location_page.dart';
 
