@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice/pages/localization_page.dart';
 import 'package:practice/pages/notification_page.dart';
 import 'package:practice/pages/sms_page.dart';
 import 'package:practice/services/notification_service.dart';
@@ -54,7 +55,7 @@ class HomePage extends StatelessWidget {
                   backgroundColor:
                       const WidgetStatePropertyAll(Colors.deepPurple)),
               icon: const Icon(Icons.sms_outlined),
-              label: const Text('SMS AUTOFILL'),
+              label: const Text('SMS autofill'),
             ),
           ),
           Padding(
@@ -75,6 +76,26 @@ class HomePage extends StatelessWidget {
                   const WidgetStatePropertyAll(Colors.lightGreen)),
               icon: const Icon(Icons.notifications),
               label: const Text('Notification'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FilledButton.icon(
+              onPressed: () {
+                NotificationService().initializeNotification();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LocalizationPage(),
+                    ));
+              },
+              style: ButtonStyle(
+                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15))),
+                  backgroundColor:
+                  const WidgetStatePropertyAll(Colors.redAccent)),
+              icon: const Icon(Icons.language),
+              label: const Text('Localization'),
             ),
           ),
         ],
