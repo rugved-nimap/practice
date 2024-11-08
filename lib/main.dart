@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice/pages/home_page.dart';
-import 'package:practice/state_manage/increment_provider.dart';
+import 'package:practice/state_manage/app_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => IncrementProvider(),
+          create: (context) => AppProvider(),
         ),
       ],
       child: MaterialApp(

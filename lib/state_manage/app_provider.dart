@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-class IncrementProvider extends ChangeNotifier {
+class AppProvider extends ChangeNotifier {
   int number = 0;
   String address = "";
   double lat = 0;
@@ -33,4 +33,6 @@ class IncrementProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+
 }

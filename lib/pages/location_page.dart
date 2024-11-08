@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:practice/state_manage/increment_provider.dart';
+import 'package:practice/state_manage/app_provider.dart';
 
 class LocationPage extends StatelessWidget {
   const LocationPage({super.key});
@@ -28,7 +28,7 @@ class LocationPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
-                  context.watch<IncrementProvider>().address,
+                  context.watch<AppProvider>().address,
                   style: const TextStyle(color: Colors.white, fontSize: 17),
                 ),
               ),
@@ -36,7 +36,7 @@ class LocationPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.read<IncrementProvider>().getLocation();
+                    context.read<AppProvider>().getLocation();
                   },
                   style: ButtonStyle(
                     shape: WidgetStatePropertyAll(
