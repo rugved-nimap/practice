@@ -10,7 +10,7 @@ class LocalizationPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Practice"),
+        title: const Text("Localization"),
       ),
       body: Center(
         child: Column(
