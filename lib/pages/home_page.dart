@@ -34,127 +34,100 @@ class HomePage extends StatelessWidget {
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         padding: const EdgeInsets.all(5),
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FilledButton.icon(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LocationPage(),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+          gridTile(
+            context,
+            'location',
+            Icons.pin_drop_rounded,
+            Colors.blueAccent,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LocationPage(),
                 ),
-                backgroundColor: const WidgetStatePropertyAll(Colors.blue),
-              ),
-              icon: const Icon(Icons.pin_drop_rounded),
-              label: Text(context.tr('location')),
-            ),
+              );
+            },
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FilledButton.icon(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SmsPage(),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+          gridTile(
+            context,
+            'sms autofill',
+            Icons.sms_outlined,
+            Colors.deepPurple,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SmsPage(),
                 ),
-                backgroundColor:
-                    const WidgetStatePropertyAll(Colors.deepPurple),
-              ),
-              icon: const Icon(Icons.sms_outlined),
-              label: Text(context.tr('sms autofill')),
-            ),
+              );
+            },
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FilledButton.icon(
-              onPressed: () {
-                NotificationService().initializeNotification();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NotificationPage(),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+          gridTile(
+            context,
+            'notification',
+            Icons.notifications,
+            Colors.lightGreen,
+            () {
+              NotificationService().initializeNotification();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationPage(),
                 ),
-                backgroundColor:
-                    const WidgetStatePropertyAll(Colors.lightGreen),
-              ),
-              icon: const Icon(Icons.notifications),
-              label: Text(context.tr('notification')),
-            ),
+              );
+            },
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FilledButton.icon(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LocalizationPage(),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+          gridTile(
+            context,
+            'localization',
+            Icons.language,
+            Colors.redAccent,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LocalizationPage(),
                 ),
-                backgroundColor: const WidgetStatePropertyAll(Colors.redAccent),
-              ),
-              icon: const Icon(Icons.language),
-              label: Text(context.tr('localization')),
-            ),
+              );
+            },
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FilledButton.icon(
-              onPressed: () {
-                // Provider.of<AppProvider>(context, listen: false).setupCameraController();
-                context.read<AppProvider>().setupCameraController();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CameraPage(),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+          gridTile(
+            context,
+            'camera',
+            Icons.camera,
+            Colors.amber,
+            () {
+              Provider.of<AppProvider>(context, listen: false)
+                  .setupCameraController();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CameraPage(),
                 ),
-                backgroundColor: const WidgetStatePropertyAll(Colors.amber),
-              ),
-              icon: const Icon(Icons.camera),
-              label: Text(context.tr('camera')),
-            ),
+              );
+            },
           ),
         ],
+      ),
+    );
+  }
+
+  Widget gridTile(BuildContext context, String localeText, IconData icon,
+      Color color, VoidCallback action) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: FilledButton.icon(
+        onPressed: action,
+        style: ButtonStyle(
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          backgroundColor: WidgetStatePropertyAll(color),
+        ),
+        icon: Icon(icon),
+        label: Text(context.tr(localeText)),
       ),
     );
   }
