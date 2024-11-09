@@ -9,8 +9,7 @@ class LocalizationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Localization"),
+        title: Text(context.tr('localization')),
       ),
       body: Center(
         child: Column(
@@ -32,7 +31,7 @@ class LocalizationPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: FilledButton(onPressed: () {
                       context.setLocale(const Locale('en'));
-                    }, child: const Text('English')),
+                    }, child: Text(context.tr('english'))),
                   ),
                 ),
                 Expanded(
@@ -40,7 +39,7 @@ class LocalizationPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: FilledButton(onPressed: () {
                       context.setLocale(const Locale('hi'));
-                    }, child: const Text('Hindi')),
+                    }, child: Text(context.tr('hindi'))),
                   ),
                 ),
               ],

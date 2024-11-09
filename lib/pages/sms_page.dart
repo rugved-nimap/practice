@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:practice/state_manage/app_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class SmsPage extends StatelessWidget {
@@ -8,9 +11,7 @@ class SmsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo.shade900,
-        title: const Text('SMS autofill'),
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 25),
+        title: Text(context.tr('sms autofill')),
       ),
       body: SizedBox(
         width: double.infinity,
@@ -21,9 +22,9 @@ class SmsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                'The message will be autofill once the you send the an message of the below type on you mobile:\n\nMessage Format: \n\nPractice: OTP 345359 \n3jGXv46rBdM',
-                style: TextStyle(color: Colors.white70),
+              Text(
+                '${context.tr('guide_mess')}\n\n${context.tr('format_text')} \n\nPractice: OTP 345359 \n3jGXv46rBdM',
+                style: Theme.of(context).textTheme.bodySmall,
                 textAlign: TextAlign.left,
               ),
               const SizedBox(
@@ -31,7 +32,11 @@ class SmsPage extends StatelessWidget {
               ),
               PinFieldAutoFill(
                 decoration: BoxLooseDecoration(
-                    strokeColorBuilder: const FixedColorBuilder(Colors.white)),
+                  strokeColorBuilder: FixedColorBuilder(
+                      context.watch<AppProvider>().isDarkMode
+                          ? Colors.white
+                          : Colors.black),
+                ),
               ),
               const SizedBox(
                 height: 40,
@@ -39,18 +44,23 @@ class SmsPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () async {
-                      await SmsAutoFill().listenForCode();
-                    },
-                    style: ButtonStyle(
-                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                        backgroundColor: WidgetStatePropertyAll(
-                            Colors.indigoAccent.shade100)),
-                    child: const Text(
-                      'Listen for the OTP',
-                      style: TextStyle(color: Colors.white),
-                    )),
+                  onPressed: () async {
+                    await SmsAutoFill().listenForCode();
+                  },
+                  style: ButtonStyle(
+                    shape: WidgetStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    backgroundColor:
+                        WidgetStatePropertyAll(Colors.indigoAccent.shade100),
+                  ),
+                  child: Text(
+                    context.tr('listen'),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
               )
             ],
           ),

@@ -50,5 +50,11 @@
     	<string>en</string>
     	<string>hi</string>
     </array>
+    <key>NSCameraUsageDescription</key>
+    <string>your usage description here</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>your usage description here</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <key>NSPhotoLibraryAddUsageDescription</key>
 </dict>
 </plist>

@@ -46,6 +46,8 @@ dependencies:
   sms_autofill: ^2.4.0
   flutter_local_notifications: ^18.0.0
   easy_localization: ^3.0.7
+  gal: ^2.3.0
+  camera: ^0.10.6
 
 dev_dependencies:
   flutter_test:

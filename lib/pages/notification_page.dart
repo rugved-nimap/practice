@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:practice/services/notification_service.dart';
 
@@ -8,8 +9,7 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Notification"),
+        title: Text(context.tr('notification')),
       ),
       body: Center(
         child: Padding(
@@ -27,7 +27,7 @@ class NotificationPage extends StatelessWidget {
                     backgroundColor: WidgetStatePropertyAll(Colors.lightGreen),
                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
                   ),
-                  child: const Text('Get instant Notification', style: TextStyle(color: Colors.white, fontSize: 16),),
+                  child: Text(context.tr('instant'), style: const TextStyle(color: Colors.white, fontSize: 16),),
                 ),
               ),
               const SizedBox(height: 10,),
@@ -41,7 +41,7 @@ class NotificationPage extends StatelessWidget {
                       backgroundColor: WidgetStatePropertyAll(Colors.lightGreen),
                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
                   ),
-                  child: const Text('Get Notification Every Minute', style: TextStyle(color: Colors.white, fontSize: 16),),
+                  child: Text(context.tr('repeated'), style: const TextStyle(color: Colors.white, fontSize: 16),),
                 ),
               ),
               const SizedBox(height: 10,),
@@ -55,7 +55,7 @@ class NotificationPage extends StatelessWidget {
                     backgroundColor: WidgetStatePropertyAll(Colors.lightGreen),
                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
                   ),
-                  child: const Text('Cancel All Notification', style: TextStyle(color: Colors.white, fontSize: 16),),
+                  child: Text(context.tr('cancel'), style: const TextStyle(color: Colors.white, fontSize: 16),),
                 ),
               ),
             ],

@@ -1,8 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:practice/pages/camera_page.dart';
 import 'package:practice/pages/localization_page.dart';
 import 'package:practice/pages/notification_page.dart';
 import 'package:practice/pages/sms_page.dart';
 import 'package:practice/services/notification_service.dart';
+import 'package:practice/state_manage/app_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'location_page.dart';
 
@@ -13,8 +17,17 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Practice"),
+        title: Text(context.tr('practice')),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<AppProvider>().themeChange();
+            },
+            icon: Icon(context.read<AppProvider>().isDarkMode
+                ? Icons.sunny
+                : Icons.nightlight_round_outlined),
+          )
+        ],
       ),
       body: GridView(
         gridDelegate:
@@ -26,17 +39,22 @@ class HomePage extends StatelessWidget {
             child: FilledButton.icon(
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LocationPage(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LocationPage(),
+                  ),
+                );
               },
               style: ButtonStyle(
-                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15))),
-                  backgroundColor: const WidgetStatePropertyAll(Colors.blue)),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                backgroundColor: const WidgetStatePropertyAll(Colors.blue),
+              ),
               icon: const Icon(Icons.pin_drop_rounded),
-              label: const Text('Location'),
+              label: Text(context.tr('location')),
             ),
           ),
           Padding(
@@ -44,18 +62,23 @@ class HomePage extends StatelessWidget {
             child: FilledButton.icon(
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SmsPage(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SmsPage(),
+                  ),
+                );
               },
               style: ButtonStyle(
-                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15))),
-                  backgroundColor:
-                      const WidgetStatePropertyAll(Colors.deepPurple)),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                backgroundColor:
+                    const WidgetStatePropertyAll(Colors.deepPurple),
+              ),
               icon: const Icon(Icons.sms_outlined),
-              label: const Text('SMS autofill'),
+              label: Text(context.tr('sms autofill')),
             ),
           ),
           Padding(
@@ -64,45 +87,74 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 NotificationService().initializeNotification();
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NotificationPage(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NotificationPage(),
+                  ),
+                );
               },
               style: ButtonStyle(
-                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15))),
-                  backgroundColor:
-                  const WidgetStatePropertyAll(Colors.lightGreen)),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                backgroundColor:
+                    const WidgetStatePropertyAll(Colors.lightGreen),
+              ),
               icon: const Icon(Icons.notifications),
-              label: const Text('Notification'),
+              label: Text(context.tr('notification')),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: FilledButton.icon(
               onPressed: () {
-                NotificationService().initializeNotification();
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LocalizationPage(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LocalizationPage(),
+                  ),
+                );
               },
               style: ButtonStyle(
-                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15))),
-                  backgroundColor:
-                  const WidgetStatePropertyAll(Colors.redAccent)),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                backgroundColor: const WidgetStatePropertyAll(Colors.redAccent),
+              ),
               icon: const Icon(Icons.language),
-              label: const Text('Localization'),
+              label: Text(context.tr('localization')),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FilledButton.icon(
+              onPressed: () {
+                // Provider.of<AppProvider>(context, listen: false).setupCameraController();
+                context.read<AppProvider>().setupCameraController();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CameraPage(),
+                  ),
+                );
+              },
+              style: ButtonStyle(
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                backgroundColor: const WidgetStatePropertyAll(Colors.amber),
+              ),
+              icon: const Icon(Icons.camera),
+              label: Text(context.tr('camera')),
             ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
       ),
     );
   }

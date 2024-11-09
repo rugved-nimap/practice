@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practice/state_manage/app_provider.dart';
@@ -9,9 +10,7 @@ class LocationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo.shade900,
-        title: const Text('SMS autofill'),
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 25),
+        title: Text(context.tr('track location')),
       ),
       body: SizedBox(
         width: double.infinity,
@@ -21,15 +20,15 @@ class LocationPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                'Location',
-                style: TextStyle(color: Colors.white70),
+              Text(
+                context.tr('location'),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
                   context.watch<AppProvider>().address,
-                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
               SizedBox(
@@ -47,9 +46,9 @@ class LocationPage extends StatelessWidget {
                     backgroundColor:
                         WidgetStatePropertyAll(Colors.indigoAccent.shade100),
                   ),
-                  child: const Text(
-                    'Click to get the Location',
-                    style: TextStyle(color: Colors.white),
+                  child: Text(
+                    context.tr('click to get'),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               )
