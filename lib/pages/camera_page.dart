@@ -15,53 +15,56 @@ class CameraPage extends StatelessWidget {
             title: Text('camera'.tr),
           ),
           body: SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: controller.cameraController != null
-                  ? CameraPreview(controller.cameraController!,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              // IconButton(
-                              //   onPressed: () {},
-                              //   icon: const Icon(
-                              //     Icons.photo,
-                              //     size: 30,
-                              //     color: Colors.white,
-                              //   ),
-                              // ),
-                              const SizedBox(width: 24,),
-                              IconButton(
-                                onPressed: () {
-                                  controller.takePicture();
-                                },
-                                icon: const Icon(
-                                  Icons.camera,
-                                  size: 65,
-                                  color: Colors.white,
-                                ),
+            width: double.infinity,
+            height: double.infinity,
+            child: controller.cameraController != null
+                ? CameraPreview(controller.cameraController!,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 15),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            // IconButton(
+                            //   onPressed: () {},
+                            //   icon: const Icon(
+                            //     Icons.photo,
+                            //     size: 30,
+                            //     color: Colors.white,
+                            //   ),
+                            // ),
+                            const SizedBox(
+                              width: 24,
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                controller.takePicture();
+                              },
+                              icon: const Icon(
+                                Icons.camera,
+                                size: 65,
+                                color: Colors.white,
                               ),
-                              IconButton(
-                                onPressed: () {
-                                  controller.changeCamera();
-                                },
-                                icon: const Icon(
-                                  Icons.settings_backup_restore,
-                                  size: 30,
-                                  color: Colors.white,
-                                ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                controller.changeCamera();
+                              },
+                              icon: const Icon(
+                                Icons.settings_backup_restore,
+                                size: 30,
+                                color: Colors.white,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ))
-                  : const Center(
-                      child: CircularProgressIndicator(),
-                    )),
+                      ),
+                    ))
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+          ),
         );
       },
     );

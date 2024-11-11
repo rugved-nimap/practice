@@ -5,7 +5,6 @@ import 'package:practice/binders/deviceinfo_binder.dart';
 import 'package:practice/binders/location_binder.dart';
 import 'package:practice/binders/notification_binder.dart';
 import 'package:practice/binders/sms_binder.dart';
-import 'package:practice/controllers/deviceinfo_controller.dart';
 import 'package:practice/controllers/home_controller.dart';
 import 'package:practice/pages/camera_page.dart';
 import 'package:practice/pages/device_info_page.dart';
@@ -58,15 +57,13 @@ class HomePage extends StatelessWidget {
                 'notification',
                 Icons.notifications,
                 Colors.lightGreen,
-                () => Get.to(const NotificationPage(),
-                    binding: NotificationBinder()),
+                () => Get.to(const NotificationPage(), binding: NotificationBinder()),
               ),
               gridTile(
                 'localization',
                 Icons.language,
                 Colors.redAccent,
-                () => Get.to(const LocalizationPage(),
-                    binding: LocalizationBinder()),
+                () => Get.to(const LocalizationPage(), binding: LocalizationBinder()),
               ),
               gridTile(
                 'camera',
@@ -78,7 +75,7 @@ class HomePage extends StatelessWidget {
                 'device info',
                 Icons.devices,
                 Colors.grey.shade800,
-                    () => Get.to(const DeviceInfoPage(), binding: DeviceinfoBinder()),
+                () => Get.to(const DeviceInfoPage(), binding: DeviceinfoBinder()),
               ),
             ],
           ),

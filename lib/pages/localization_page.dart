@@ -32,20 +32,22 @@ class LocalizationPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: FilledButton(
-                            onPressed: () {
-                              controller.localeEng();
-                            },
-                            child: Text('english'.tr)),
+                          onPressed: () {
+                            controller.localeEng();
+                          },
+                          child: Text('english'.tr),
+                        ),
                       ),
                     ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: FilledButton(
-                            onPressed: () {
-                              controller.localeHin();
-                            },
-                            child: Text('hindi'.tr)),
+                          onPressed: () {
+                            controller.localeHin();
+                          },
+                          child: Text('hindi'.tr),
+                        ),
                       ),
                     ),
                   ],

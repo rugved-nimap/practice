@@ -22,9 +22,18 @@ class DeviceInfoPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Model: ${controller.model}', style: Theme.of(context).textTheme.bodyMedium,),
-                  Text('Brand: ${controller.brand.toString().toUpperCase()}', style: Theme.of(context).textTheme.bodyMedium,),
-                  Text('Display: ${controller.display}', style: Theme.of(context).textTheme.bodyMedium,),
+                  Text(
+                    'Model: ${controller.model}',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  Text(
+                    'Brand: ${controller.brand.toString().toUpperCase()}',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  Text(
+                    'Display: ${controller.display}',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ],
               ),
             ),

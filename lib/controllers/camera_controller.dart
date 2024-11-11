@@ -38,22 +38,6 @@ class MyCameraController extends GetxController {
     }
   }
 
-  void toggleCameraMode() async {
-    try {
-      if (cameraController != null) {
-        if (isVideoModeOn) {
-          isVideoModeOn = false;
-        } else {
-          await cameraController!.prepareForVideoRecording();
-          isVideoModeOn = true;
-        }
-        update();
-      }
-    } catch (e) {
-      print('Error changing camera mode: $e');
-    }
-  }
-
   void changeCamera() async {
     try {
       if (cameras.isNotEmpty) {
