@@ -1,5 +1,5 @@
-
-import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
+import 'package:practice/controllers/localization_controller.dart';
 import 'package:flutter/material.dart';
 
 class LocalizationPage extends StatelessWidget {
@@ -7,47 +7,54 @@ class LocalizationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.tr('localization')),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              context.tr('string_one'),
-              style: const TextStyle(color: Colors.white, fontSize: 17),
-            ),
-            Text(
-              context.tr('string_two'),
-              style: const TextStyle(color: Colors.white, fontSize: 17),
-            ),
-            Row(
+    return GetBuilder<LocalizationController>(
+      builder: (controller) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('localization'.tr),
+          ),
+          body: Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FilledButton(onPressed: () {
-                      context.setLocale(const Locale('en'));
-                    }, child: Text(context.tr('english'))),
-                  ),
+                Text(
+                  'string_one'.tr,
+                  style: const TextStyle(fontSize: 17),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FilledButton(onPressed: () {
-                      context.setLocale(const Locale('hi'));
-                    }, child: Text(context.tr('hindi'))),
-                  ),
+                Text(
+                  'string_two'.tr,
+                  style: const TextStyle(fontSize: 17),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FilledButton(
+                            onPressed: () {
+                              controller.localeEng();
+                            },
+                            child: Text('english'.tr)),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FilledButton(
+                            onPressed: () {
+                              controller.localeHin();
+                            },
+                            child: Text('hindi'.tr)),
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
-  
 }

@@ -1,13 +1,16 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:practice/binders/camera_binder.dart';
+import 'package:practice/binders/location_binder.dart';
+import 'package:practice/binders/notification_binder.dart';
+import 'package:practice/binders/sms_binder.dart';
+import 'package:practice/controllers/home_controller.dart';
 import 'package:practice/pages/camera_page.dart';
 import 'package:practice/pages/localization_page.dart';
 import 'package:practice/pages/notification_page.dart';
 import 'package:practice/pages/sms_page.dart';
-import 'package:practice/services/notification_service.dart';
-import 'package:practice/state_manage/app_provider.dart';
-import 'package:provider/provider.dart';
 
+import '../binders/localization_binder.dart';
 import 'location_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,100 +18,78 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.tr('practice')),
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.read<AppProvider>().themeChange();
-            },
-            icon: Icon(context.read<AppProvider>().isDarkMode
-                ? Icons.sunny
-                : Icons.nightlight_round_outlined),
-          )
-        ],
-      ),
-      body: GridView(
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        padding: const EdgeInsets.all(5),
-        children: [
-          gridTile(
-            context,
-            'location',
-            Icons.pin_drop_rounded,
-            Colors.blueAccent,
-            () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LocationPage(),
-                ),
-              );
-            },
+    return GetBuilder<HomeController>(
+      builder: (controller) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('practice'.tr),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  controller.themeChange();
+                },
+                icon: Icon(controller.isDark
+                    ? Icons.sunny
+                    : Icons.nightlight_round_outlined),
+              )
+            ],
           ),
-          gridTile(
-            context,
-            'sms autofill',
-            Icons.sms_outlined,
-            Colors.deepPurple,
-            () {
-              Navigator.push(
+          body: GridView(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2),
+            padding: const EdgeInsets.all(5),
+            children: [
+              gridTile(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const SmsPage(),
-                ),
-              );
-            },
-          ),
-          gridTile(
-            context,
-            'notification',
-            Icons.notifications,
-            Colors.lightGreen,
-            () {
-              NotificationService().initializeNotification();
-              Navigator.push(
+                'location',
+                Icons.pin_drop_rounded,
+                Colors.blueAccent,
+                () {
+                  Get.to(const LocationPage(), binding: LocationBinder());
+                },
+              ),
+              gridTile(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationPage(),
-                ),
-              );
-            },
-          ),
-          gridTile(
-            context,
-            'localization',
-            Icons.language,
-            Colors.redAccent,
-            () {
-              Navigator.push(
+                'sms autofill',
+                Icons.sms_outlined,
+                Colors.deepPurple,
+                () {
+                  Get.to(const SmsPage(), binding: SmsBinder());
+                },
+              ),
+              gridTile(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const LocalizationPage(),
-                ),
-              );
-            },
-          ),
-          gridTile(
-            context,
-            'camera',
-            Icons.camera,
-            Colors.amber,
-            () {
-              Provider.of<AppProvider>(context, listen: false)
-                  .setupCameraController();
-              Navigator.push(
+                'notification',
+                Icons.notifications,
+                Colors.lightGreen,
+                () {
+                  Get.to(const NotificationPage(),
+                      binding: NotificationBinder());
+                },
+              ),
+              gridTile(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const CameraPage(),
-                ),
-              );
-            },
+                'localization',
+                Icons.language,
+                Colors.redAccent,
+                () {
+                  Get.to(const LocalizationPage(),
+                      binding: LocalizationBinder());
+                },
+              ),
+              gridTile(
+                context,
+                'camera',
+                Icons.camera,
+                Colors.amber,
+                () {
+                  Get.to(const CameraPage(), binding: CameraBinder());
+                },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -127,7 +108,7 @@ class HomePage extends StatelessWidget {
           backgroundColor: WidgetStatePropertyAll(color),
         ),
         icon: Icon(icon),
-        label: Text(context.tr(localeText)),
+        label: Text(localeText.tr),
       ),
     );
   }
