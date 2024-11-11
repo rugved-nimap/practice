@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:practice/binders/camera_binder.dart';
+import 'package:practice/binders/deviceinfo_binder.dart';
 import 'package:practice/binders/location_binder.dart';
 import 'package:practice/binders/notification_binder.dart';
 import 'package:practice/binders/sms_binder.dart';
+import 'package:practice/controllers/deviceinfo_controller.dart';
 import 'package:practice/controllers/home_controller.dart';
 import 'package:practice/pages/camera_page.dart';
+import 'package:practice/pages/device_info_page.dart';
 import 'package:practice/pages/localization_page.dart';
 import 'package:practice/pages/notification_page.dart';
 import 'package:practice/pages/sms_page.dart';
@@ -40,51 +43,42 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             children: [
               gridTile(
-                context,
                 'location',
                 Icons.pin_drop_rounded,
                 Colors.blueAccent,
-                () {
-                  Get.to(const LocationPage(), binding: LocationBinder());
-                },
+                () => Get.to(const LocationPage(), binding: LocationBinder()),
               ),
               gridTile(
-                context,
                 'sms autofill',
                 Icons.sms_outlined,
                 Colors.deepPurple,
-                () {
-                  Get.to(const SmsPage(), binding: SmsBinder());
-                },
+                () => Get.to(const SmsPage(), binding: SmsBinder()),
               ),
               gridTile(
-                context,
                 'notification',
                 Icons.notifications,
                 Colors.lightGreen,
-                () {
-                  Get.to(const NotificationPage(),
-                      binding: NotificationBinder());
-                },
+                () => Get.to(const NotificationPage(),
+                    binding: NotificationBinder()),
               ),
               gridTile(
-                context,
                 'localization',
                 Icons.language,
                 Colors.redAccent,
-                () {
-                  Get.to(const LocalizationPage(),
-                      binding: LocalizationBinder());
-                },
+                () => Get.to(const LocalizationPage(),
+                    binding: LocalizationBinder()),
               ),
               gridTile(
-                context,
                 'camera',
                 Icons.camera,
                 Colors.amber,
-                () {
-                  Get.to(const CameraPage(), binding: CameraBinder());
-                },
+                () => Get.to(const CameraPage(), binding: CameraBinder()),
+              ),
+              gridTile(
+                'device info',
+                Icons.devices,
+                Colors.grey.shade800,
+                    () => Get.to(const DeviceInfoPage(), binding: DeviceinfoBinder()),
               ),
             ],
           ),
@@ -93,8 +87,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget gridTile(BuildContext context, String localeText, IconData icon,
-      Color color, VoidCallback action) {
+  Widget gridTile(
+      String localeText, IconData icon, Color color, VoidCallback action) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FilledButton.icon(

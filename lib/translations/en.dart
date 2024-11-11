@@ -17,5 +17,6 @@ const Map<String, String> en = {
   "repeated": "Get Notification Every Minute",
   "cancel": "Cancel All Notification",
   "localization": "Localization",
-  "camera": "Camera"
+  "camera": "Camera",
+  "device info": "Device Info",
 };

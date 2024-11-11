@@ -4,10 +4,6 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  NotificationService() {
-    initializeNotification();
-  }
-
   Future<void> _requestPermission() async {
     _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
@@ -31,11 +27,14 @@ class NotificationService {
       'title',
       'body',
       const NotificationDetails(
-        android: AndroidNotificationDetails('instant_id', 'instant_name',
-            channelDescription: 'instant_description',
-            importance: Importance.max,
-            priority: Priority.high,
-            showWhen: false),
+        android: AndroidNotificationDetails(
+          'instant_id',
+          'instant_name',
+          channelDescription: 'instant_description',
+          importance: Importance.max,
+          priority: Priority.high,
+          showWhen: false,
+        ),
       ),
     );
   }
@@ -47,10 +46,13 @@ class NotificationService {
       'body',
       RepeatInterval.everyMinute,
       const NotificationDetails(
-        android: AndroidNotificationDetails('repeated_id', 'repeated_name',
-            channelDescription: 'repeated_description',
-            importance: Importance.max,
-            priority: Priority.high),
+        android: AndroidNotificationDetails(
+          'repeated_id',
+          'repeated_name',
+          channelDescription: 'repeated_description',
+          importance: Importance.max,
+          priority: Priority.high,
+        ),
       ),
       androidScheduleMode: AndroidScheduleMode.exact,
     );

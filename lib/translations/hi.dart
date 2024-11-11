@@ -17,5 +17,6 @@ const Map<String, String> hi = {
   "repeated": "हर मिनट अधिसूचना प्राप्त करें",
   "cancel": "सभी अधिसूचना रद्द करें",
   "localization": "स्थानीयकरण",
-  "camera": "कैमरा"
+  "camera": "कैमरा",
+  "device info": "डिवाइस जानकारी",
 };
