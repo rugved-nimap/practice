@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       locale: Get.deviceLocale,
       fallbackLocale: const Locale('en'),
       home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
